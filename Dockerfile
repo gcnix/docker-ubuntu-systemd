@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:devel
 MAINTAINER "Brett Delle Grazie" <brett.dellegrazie@gmail.com>
 
 ENV container=docker init=/lib/systemd/systemd DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical LANG=C.UTF-8
@@ -34,7 +34,6 @@ COPY setup /sbin/
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run", "/run/lock"]
 STOPSIGNAL SIGRTMIN+3
 
-# Workaround for docker/docker#27202, technique based on comments from docker/docker#9212
 ENTRYPOINT ["/sbin/init", --log-target=journal"]
 
 CMD []
