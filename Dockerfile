@@ -34,7 +34,6 @@ COPY setup /sbin/
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run", "/run/lock"]
 STOPSIGNAL SIGRTMIN+3
 
-# Workaround for docker/docker#27202, technique based on comments from docker/docker#9212
 ENTRYPOINT ["/sbin/init", --log-target=journal"]
 
 CMD []
