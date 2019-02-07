@@ -34,6 +34,6 @@ COPY setup /sbin/
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run", "/run/lock"]
 STOPSIGNAL SIGRTMIN+3
 
-ENTRYPOINT ["/sbin/init", --log-target=journal"]
+ENTRYPOINT ["/sbin/init", "--log-target=journal"]
 
 CMD []
