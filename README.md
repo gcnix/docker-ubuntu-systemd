@@ -1,4 +1,4 @@
-# solita/ubuntu-systemd
+# bdellegrazie/docker-ubuntu-systemd
 
 A Docker image based on `ubuntu` that runs `systemd` with a minimal set of
 services.
@@ -9,7 +9,6 @@ running it in production!**
 ## Supported tags
 
 * `18.04`, `bionic`
-* `16.04`, `xenial`, `latest`
 
 ## But why?
 
@@ -143,17 +142,6 @@ The journalctl logs should look like this on a clean shutdown:
     Mar 16 14:15:58 aad1d41c3a2e systemd[1]: Stopped target Slices.
 
 ## Known issues
-
-There's [a bug](https://github.com/docker/docker/issues/22327) in Docker
-versions < 1.12.0 that randomly causes `/run` and `/run/lock` to be mounted in
-the wrong order. In this case the output of `docker logs` looks like this:
-
-    Failed to mount tmpfs at /run/lock: Permission denied
-    [!!!!!!] Failed to mount API filesystems, freezing.
-    Freezing execution.
-
-If this happens to you, `docker kill` the container (it won't listen for the
-shutdown signal) and start it again with `docker start`. Better luck next time!
 
 ## Contributors
 
