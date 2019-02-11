@@ -21,6 +21,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN find /etc/systemd/system \
     /lib/systemd/system \
     -path '*.wants/*' \
+    -not -name '*dbus*' \
     -not -name '*journald*' \
     -not -name '*systemd-tmpfiles*' \
     -not -name '*systemd-user-sessions*' \
