@@ -1,5 +1,5 @@
 FROM ubuntu:devel
-MAINTAINER "Brett Delle Grazie" <brett.dellegrazie@gmail.com>
+LABEL maintainer="brett.dellegrazie@gmail.com"
 
 ENV container=docker init=/lib/systemd/systemd DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical LANG=C.UTF-8
 
