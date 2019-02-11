@@ -11,7 +11,7 @@ RUN echo 'APT::Install-Recommends "0";\nAPT::Get::Assume-Yes "true";\nAPT::Insta
 
 RUN apt-get update && \
     apt-get install -y \
-    dbus systemd systemd-cron rsyslog iproute2 python3-minimal sudo && \
+    dbus systemd systemd-cron rsyslog iproute2 python3-minimal sudo ca-certificates && \
     apt-get clean && \
     rm -rf /usr/share/doc /usr/share/man /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
