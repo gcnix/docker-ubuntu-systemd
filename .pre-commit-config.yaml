@@ -1,0 +1,14 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v2.1.0
+    hooks:
+      - id: trailing-whitespace
+        files: (\.js|\.json|\.rb|\.md|\.py|\.sh|\.txt|\.yaml|\.yml|^Dockerfile)$
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+  - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+    rev: v0.1.0
+    hooks:
+      - id: dockerfilelint
+        stages: [commit]
