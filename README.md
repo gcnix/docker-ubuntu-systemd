@@ -3,39 +3,17 @@
 A Docker image based on `ubuntu` that runs `systemd` with a minimal set of
 services.
 
-**This image is meant for development use only. We strongly recommend against
-running it in production!**
+Intended for use testing Ansible roles with Molecule
+
+**Development use only. Do not use in production!**
 
 ## Supported tags
 
-* `18.04`, `bionic`
+* `18.04`
 
 ## But why?
 
-The short answer: use `solita/ubuntu-systemd` for running applications that
-need to be run in a full Ubuntu system and not on their own as PID 1.
-
-The long answer: `solita/ubuntu-systemd` might be a better choice than the
-stock `ubuntu` image if one of the following is true:
-
-- You want to test a provisioning or deployment script that configures and
-  starts `systemd` services.
-
-- You want to run multiple services in the same container.
-
-- You want to solve the [the PID 1 zombie reaping problem](https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/).
-
-If you just want to run a single, short-lived process in a container, you
-should probably use the stock `ubuntu` image instead.
-
-## Setup
-
-Before you start your first `systemd` container, run the following command to
-set up your Docker host. It uses [special privileges](https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
-to create a cgroup hierarchy for `systemd`. We do this in a separate setup
-step so we can run `systemd` in unprivileged containers.
-
-    docker run --rm --privileged -v /:/host solita/ubuntu-systemd setup
+Ansible roles often provide services. Testing these properly requires a service manager.
 
 ## Running
 
@@ -52,6 +30,7 @@ but it can't mount them itself in an unprivileged container:
 
     --tmpfs /run
     --tmpfs /run/lock
+    --tmpfs /tmp
 
 `systemd` needs read-only access to the kernel's cgroup hierarchies:
 
@@ -68,7 +47,7 @@ This image is useless as it's only meant to serve as a base for your own
 images, but you can still create a container from it. First set up your Docker
 host as described in Setup above. Then run the following command:
 
-    docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t solita/ubuntu-systemd
+    docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t bdellegrazie/ubuntu-systemd
 
 Check the logs to see if `systemd` started correctly:
 
@@ -152,4 +131,5 @@ The journalctl logs should look like this on a clean shutdown:
 
 ## License
 
+Copyright © 2019 [bdellegrazie](https://github.com/bdellegrazie). Licensed under [the MIT license](https://github.com/docker-ubuntu-systemd/blob/master/LICENSE).
 Copyright © 2016-2018 [Solita](http://www.solita.fi). Licensed under [the MIT license](https://github.com/solita/docker-systemd/blob/master/LICENSE).
