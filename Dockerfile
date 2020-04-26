@@ -12,7 +12,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /usr/share/doc/* /usr/share/man/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
+RUN sed -i 's/^\(module(load="imklog")\)/#\1/' /etc/rsyslog.conf
 
 # Don't start any optional services except for the few we need.
 RUN find /etc/systemd/system \
