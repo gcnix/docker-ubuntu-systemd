@@ -1,4 +1,4 @@
-FROM ubuntu:devel
+FROM ubuntu:20.04
 LABEL maintainer="brett.dellegrazie@gmail.com"
 
 ENV container=docker LANG=C.UTF-8
