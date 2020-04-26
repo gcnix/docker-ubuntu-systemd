@@ -8,7 +8,7 @@ RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-    dbus systemd systemd-cron rsyslog iproute2 python sudo bash ca-certificates && \
+    dbus systemd systemd-cron rsyslog iproute2 python python-apt sudo bash ca-certificates && \
     apt-get clean && \
     rm -rf /usr/share/doc/* /usr/share/man/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
